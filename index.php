@@ -28,7 +28,7 @@
                 <td>性別：</td>
                 <td>
                     <select name="gender">
-                        <option value="0" selected="selected">すべて</option>
+                        <option value="" selected="selected">すべて</option>
                         <option value="1">男性</option>
                         <option value="2">女性</option>
                     </select>
@@ -36,7 +36,7 @@
                 <td>部署：</td>
                 <td>
                     <select name="section">
-                        <option value="0" selected="selected">すべて</option>
+                        <option value="" selected="selected">すべて</option>
                         <option value="1">第一事業部</option>
                         <option value="2">第二事業部</option>
                         <option value="3">営業</option>
@@ -47,7 +47,7 @@
                 <td>役職：</td>
                 <td>
                     <select name="grade">
-                        <option value="0" selected="selected">すべて</option>
+                        <option value="" selected="selected">すべて</option>
                         <option value="1">事業部長</option>
                         <option value="2">部長</option>
                         <option value="3">チームリーダー</option>
@@ -74,14 +74,34 @@
             $DB_PW = "toMeu4rH";
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
-            $query_str = "SELECT member.name, member.member_ID, grade_master.grade_name, section1_master.section_name FROM member
+            $query_str = "SELECT * FROM member
                           LEFT JOIN section1_master ON section1_master.ID = member.section_ID
-                          LEFT JOIN grade_master ON grade_master.ID = member.grade_ID";   // 実行するSQL文を作成して変数に保持
+                          LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
+                          WHERE 1";   // 実行するSQL文を作成して変数に保持
+
+
+            $where_str = "";
+            if(isset($_GET['name']) && !empty($_GET['name'])){
+                $where_str .= " AND name LIKE '%" . $_GET['name'] . "%'";
+            }
+            if(isset($_GET['gender']) && !empty($_GET['gender'])){
+                $where_str .= " AND seibetu = '" . $_GET['gender'] . "'";
+            }
+            if(isset($_GET['section']) && !empty($_GET['section'])){
+                $where_str .= " AND section_ID = '" . $_GET['section'] . "'";
+            }
+            if(isset($_GET['grade']) && !empty($_GET['grade'])){
+                $where_str .= " AND grade_ID = '" . $_GET['grade'] . "'";
+            }
+
+
+            $query_Str = $query_str .= $where_str;
 
             echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
             $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
             $sql->execute();                                   // SQLを実行する
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
+
 
             foreach ($result as $x) {
                 echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
