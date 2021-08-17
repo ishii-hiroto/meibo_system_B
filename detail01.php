@@ -62,7 +62,7 @@
 
 
         <td><form method='post' action='（遷移先のフォルダ）' style="text-align:right">
-            <input type="submit" value="編集" >  <!--編集あとで検索-->
+            <input type="submit" value="編集" >  <!--編集あとで検索-test->
         <td><input type="reset" value="削除">
     </tr>
 
