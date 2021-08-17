@@ -81,8 +81,8 @@
             <tr>
                 <th>性別</th>
                 <td>
-                    <input type="radio" name="gender01" value="0" checked="checked" />男性
-                    <input type="radio" name="gender01" value="1" />女性
+                    <input type="radio" name="gender01" value="1" checked="checked" />男性
+                    <input type="radio" name="gender01" value="2" />女性
                 </td>
             </tr>
             <tr>
@@ -92,21 +92,21 @@
             <tr>
                 <th>所属部署</th>
                 <td>
-                    <input type="radio" name="section01" value="0" checked="checked" />第一事業部
-                    <input type="radio" name="section01" value="1" />第二事業部
-                    <input type="radio" name="section01" value="2" />営業
-                    <input type="radio" name="section01" value="3" />総務
-                    <input type="radio" name="section01" value="4" />人事
+                    <input type="radio" name="section01" value="1" checked="checked" />第一事業部
+                    <input type="radio" name="section01" value="2" />第二事業部
+                    <input type="radio" name="section01" value="3" />営業
+                    <input type="radio" name="section01" value="4" />総務
+                    <input type="radio" name="section01" value="5" />人事
                 </td>
             </tr>
             <tr>
                 <th>役職</th>
                 <td>
-                    <input type="radio" name="grade01" value="0" checked="checked" />事業部長
-                    <input type="radio" name="grade01" value="1" />部長
-                    <input type="radio" name="grade01" value="2" />チームリーダー
-                    <input type="radio" name="grade01" value="3" />リーダー
-                    <input type="radio" name="grade01" value="4" />メンバー
+                    <input type="radio" name="grade01" value="1" checked="checked" />事業部長
+                    <input type="radio" name="grade01" value="2" />部長
+                    <input type="radio" name="grade01" value="3" />チームリーダー
+                    <input type="radio" name="grade01" value="4" />リーダー
+                    <input type="radio" name="grade01" value="5" />メンバー
                 </td>
             </tr>
             <tr>
