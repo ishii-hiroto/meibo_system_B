@@ -6,16 +6,14 @@
         <title>社員情報詳細</title>
     </head>
     <body>
-
-        <table>
             <tr>
                 <td>社員名簿システム</td>
                 <td>| <a href="./index.php">トップ画面</a>
                     | <a href="./entry01.php">新規社員登録へ</a> |
                 </td>
             </tr>
-        </table>
             <hr>
+
 
         <table>
             <tr>
@@ -60,17 +58,20 @@
                 </td>
             </tr>
 
+            <tr>
+            <th>役職</th>
+                <td>
 
-        <td><form method='post' action='（遷移先のフォルダ）' style="text-align:right">
-            <input type="submit" value="編集" >  <!--編集あとで検索-test2->
-        <td><input type="reset" value="削除">
-    </tr>
+                </td>
+            </tr>
 
-
-
-
-
-
-
+            <tr>
+            <td>
+                <input type="button" onclick="location.href='./update01.php'" value="編集">
+                <input type="reset" value="削除"
+                onclick="return confirm('削除ボタンがクリックされました。本当に入力内容を削除してもよろしいですか？');">
+            </td>
+            </tr>
+        </table>
     </body>
 </html>
