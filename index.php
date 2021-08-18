@@ -20,8 +20,8 @@
         <table>
             <tr>
                 <td>名前：</td>
-                <td>
-                    <input type="text" name="name" size="20" maxlength="30" placeholder="山田太郎" value="">
+                <td class>
+                    <input type="search" name="name" size="20" maxlength="30" placeholder="山田太郎" value="">
                 </td>
             </tr>
             <tr>
@@ -113,7 +113,11 @@
 
             foreach ($result as $x) {
                 echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
-                echo "<td>" . $x['name'] . "</td>";
+                echo "<td>" .
+                        "<a href='datail01.php'>" .
+                            $x['name'] .
+                        "</a>" .
+                    "</td>";
                 echo "<td>" . $x['section_name'] . "</td>";
                 echo "<td >" . $x['grade_name'] . "</td></tr>";
             }
