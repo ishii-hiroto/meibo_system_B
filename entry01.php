@@ -39,8 +39,12 @@
             <tr>
                 <th>性別</th>
                 <td>
-                    <input type="radio" name="gender01" value="1" checked="checked" />男性
-                    <input type="radio" name="gender01" value="2" />女性
+                    <?php
+                        include './include/gender.php';
+                        foreach ($gender_array as $gender){
+                        echo "<input type='radio' name='gender01' value='' checked='checked'/>".$gender;
+                        }
+                    ?>
                 </td>
             </tr>
             <tr>
