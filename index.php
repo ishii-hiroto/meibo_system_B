@@ -21,14 +21,14 @@
             <tr>
                 <td>名前：</td>
                 <td>
-                    <input type="serch" name="name" size="20" maxlength="30" placeholder="山田太郎" />
+                    <input type="text" name="name" size="20" maxlength="30" placeholder="山田太郎" value="">
                 </td>
             </tr>
             <tr>
                 <td>性別：</td>
                 <td>
                     <select name="gender">
-                        <option value="" selected="selected">すべて</option>
+                        <option value="" selected>すべて</option>
                         <option value="1">男性</option>
                         <option value="2">女性</option>
                     </select>
@@ -36,7 +36,7 @@
                 <td>部署：</td>
                 <td>
                     <select name="section">
-                        <option value="" selected="selected">すべて</option>
+                        <option value="" selected>すべて</option>
                         <option value="1">第一事業部</option>
                         <option value="2">第二事業部</option>
                         <option value="3">営業</option>
@@ -47,7 +47,7 @@
                 <td>役職：</td>
                 <td>
                     <select name="grade">
-                        <option value="" selected="selected">すべて</option>
+                        <option value="" selected>すべて</option>
                         <option value="1">事業部長</option>
                         <option value="2">部長</option>
                         <option value="3">チームリーダー</option>
@@ -79,29 +79,37 @@
                           LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
                           WHERE 1";   // 実行するSQL文を作成して変数に保持
 
-
             $where_str = "";
+            $cond_name = "";
+            $cond_gender = "";
+            $cond_section = "";
+            $cond_grade = "";
+
             if(isset($_GET['name']) && !empty($_GET['name'])){
                 $where_str .= " AND name LIKE '%" . $_GET['name'] . "%'";
+                $cond_name = $_GET['name'];
             }
             if(isset($_GET['gender']) && !empty($_GET['gender'])){
                 $where_str .= " AND seibetu = '" . $_GET['gender'] . "'";
+                $cond_gender = $_GET['gender'];
             }
             if(isset($_GET['section']) && !empty($_GET['section'])){
                 $where_str .= " AND section_ID = '" . $_GET['section'] . "'";
+                $cond_section = $_GET['section'];
             }
             if(isset($_GET['grade']) && !empty($_GET['grade'])){
                 $where_str .= " AND grade_ID = '" . $_GET['grade'] . "'";
+                $cond_grade = $_GET['grade'];
             }
 
 
-            $query_Str = $query_str .= $where_str;
+            $query_str = $query_str .= $where_str; //あとで修正、平子さんからＦＢ
 
             echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
             $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
             $sql->execute();                                   // SQLを実行する
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
-
+            echo "検索件数：" . count($result);
 
             foreach ($result as $x) {
                 echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
