@@ -31,7 +31,8 @@
                 window.alert('年齢は必須です');
                 return false;
             }else if(window.confirm('登録を行います。よろしいですか？')){
-                location.href="../system/detail01.php";//「OK」の場合はindex.phpに移動
+                // location.href="./entry02.php";//「OK」の場合はindex.phpに移動
+                document.mainform.submit();
             }else{
                 windows.alert('キャンセルされました');//警告ダイアログ　テスト
                 return false;//送信を中止
@@ -63,8 +64,8 @@
                     <select name="pref">
                         <?php
                             include './include/former.php';
-                            foreach ($pref_array as $pref){
-                            echo "<option value=''>". $pref ."</option>";
+                            foreach ($pref_array as $key => $pref){
+                            echo "<option value='" . $key . "'>". $pref ."</option>";
                             }
                         ?>
                     </select>
@@ -75,8 +76,8 @@
                 <td>
                     <?php
                         include './include/gender.php';
-                        foreach ($gender_array as $gender){
-                        echo "<input type='radio' name='gender01' value='' checked='checked'/>".$gender;
+                        foreach ($gender_array as $key01 => $gender){
+                        echo "<input type='radio' name='gender01' value='" . $key01 . "' checked='checked'/>".$gender;
                         }
                     ?>
                 </td>
