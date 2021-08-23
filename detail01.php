@@ -11,7 +11,6 @@
                 <td>| <a href="./index.php">トップ画面</a>
                     | <a href="./entry01.php">新規社員登録へ</a> |
                 </td>
-            </tr>
             <hr>
             <?php
             $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
@@ -26,7 +25,6 @@
             $sql->execute();                      // SQLを実行する
             $result = $sql->fetch();
             echo $result[ ' member_ID '];
-
             ?>
 
         <table>
