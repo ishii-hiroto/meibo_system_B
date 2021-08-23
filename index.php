@@ -117,10 +117,11 @@
 =======
             foreach ($result as $x) {
                 echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
-                echo "<td>" .
-                        "<a href='datail01.php'>" .
-                            $x['name'] .
-                        "</a>" .
+                echo "<td>".
+                        "<a href='./detail01.php?member_ID=
+                            echo{$member['member_ID']}'>
+                            echo{$member['name']};
+                        </a>" .
                     "</td>";
                 echo "<td>" . $x['section_name'] . "</td>";
                 echo "<td >" . $x['grade_name'] . "</td></tr>";
