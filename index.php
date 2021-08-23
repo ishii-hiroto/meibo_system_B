@@ -111,7 +111,6 @@
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
             echo "検索件数：" . count($result);
 
-<<<<<<< HEAD
             foreach ($result as $x) {
                 echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
                 echo "<td>" .
@@ -121,23 +120,6 @@
                     "</td>";
                 echo "<td>" . $x['section_name'] . "</td>";
                 echo "<td >" . $x['grade_name'] . "</td></tr>";
-=======
-
-            $CNT = count($result);
-
-            if($CNT == 0){
-                echo "<tr><td colspan='5'>検索結果なし</td></tr>";
-            }else{
-
-                foreach ($result as $x) {
-                    echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
-                    echo "<td><a href='datail01.php?id=" .
-                        $x['member_ID'] . "'>" .
-                        $x['name'] . "</a></td>";
-                    echo "<td>" . $x['section_name'] . "</td>";
-                    echo "<td >" . $x['grade_name'] . "</td></tr>";
-                }
->>>>>>> 00dbd68e8cd48a1e2ed71ca2589f3bc0ed8b4121
             }
         ?>
         </table>
