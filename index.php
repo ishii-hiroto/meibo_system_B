@@ -101,7 +101,7 @@
             $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
             $sql->execute();                                   // SQLを実行する
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
-            echo "検索件数：" . count($result);
+            echo "検索件数：" . count($result); //最新版
 
 
             $CNT = count($result);
