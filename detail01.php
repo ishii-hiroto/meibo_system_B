@@ -11,58 +11,56 @@
                 <td>| <a href="./index.php">トップ画面</a>
                     | <a href="./entry01.php">新規社員登録へ</a> |
                 </td>
-            </tr>
             <hr>
+            <?php
+            $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
+            $DB_USER = "webaccess";
+            $DB_PW = "toMeu4rH";
+            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
+            $id = $_GET[ ' member_ID '];
+
+            $query_str = "SELECT * FROM member WHERE member.member_ID = $id";   // 実行するSQL文を作成して変数に保持
+            $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
+            $sql->execute();                      // SQLを実行する test5
+            $result = $sql->fetch();
+            echo $result[ ' member_ID '];
+            ?>
 
         <table>
             <tr>
             <th>社員ID</th>
-                <td>
-
-                </td>
+            <td>59</td>
             </tr>
 
             <tr>
             <th>名前</th>
-                <td>
-
-                </td>
+            <td>影山杏</td>
             </tr>
 
             <tr>
             <th>出身地</th>
-                <td>
-
-                </td>
+            <td>宮城県</td>
             </tr>
 
             <tr>
             <th>性別</th>
-                <td>
-
-                </td>
+            <td>男性</td>
             </tr>
 
             <tr>
             <th>年齢</th>
-                <td>
-
-                </td>
+            <td>22</td>
             </tr>
 
             <tr>
             <th>所属部署</th>
-                <td>
-
-                </td>
+            <td>第一事業部</td>
             </tr>
 
             <tr>
             <th>役職</th>
-                <td>
-
-                </td>
+        　　<td>リーダー</td>
             </tr>
 
             <tr>

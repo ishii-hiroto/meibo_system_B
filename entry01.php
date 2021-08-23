@@ -50,7 +50,11 @@
             </tr>
         </table>
         <hr>
+<<<<<<< HEAD
         <form method="POST" action="./entry02.php" name='mainform'><!--どこで受け取るか最新版-->
+=======
+        <form method="POST" action="./index.php" name='mainform'><!--どこで受け取るか-->
+>>>>>>> 8953a353a91102dc73c60a9b531f4f237245076c
         <table>
             <tr>
                 <th>名前</th>
