@@ -80,18 +80,26 @@
                           WHERE 1";   // 実行するSQL文を作成して変数に保持
 
             $where_str = "";
+            $cond_name = "";
+            $cond_gender = "";
+            $cond_section = "";
+            $cond_grade = "";
 
             if(isset($_GET['name']) && !empty($_GET['name'])){
                 $where_str .= " AND name LIKE '%" . $_GET['name'] . "%'";
+                $cond_name = $_GET['name'];
             }
             if(isset($_GET['gender']) && !empty($_GET['gender'])){
                 $where_str .= " AND seibetu = '" . $_GET['gender'] . "'";
+                $cond_gender = $_GET['gender'];
             }
             if(isset($_GET['section']) && !empty($_GET['section'])){
                 $where_str .= " AND section_ID = '" . $_GET['section'] . "'";
+                $cond_section = $_GET['section'];
             }
             if(isset($_GET['grade']) && !empty($_GET['grade'])){
                 $where_str .= " AND grade_ID = '" . $_GET['grade'] . "'";
+                $cond_grade = $_GET['grade'];
             }
 
 
@@ -103,29 +111,15 @@
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
             echo "検索件数：" . count($result);
 
-<<<<<<< HEAD
-            $CNT = count($result);
-
-            if($CNT == 0){
-                echo "<tr><td colspan='5'>検索結果なし</td></tr>";
-            }else{
-                foreach ($result as $x)
-                    echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
-                    echo "<td>" . $x['name'] . "</td>";
-                    echo "<td>" . $x['section_name'] . "</td>";
-                    echo "<td >" . $x['grade_name'] . "</td></tr>";
-=======
             foreach ($result as $x) {
                 echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
-                echo "<td>".
-                        "<a href='./detail01.php?member_ID=
-                            echo{$member['member_ID']}'>
-                            echo{$member['name']};
-                        </a>" .
+                echo "<td>" .
+                        "<a href='datail01.php'>" .
+                            $x['name'] .
+                        "</a>" .
                     "</td>";
                 echo "<td>" . $x['section_name'] . "</td>";
                 echo "<td >" . $x['grade_name'] . "</td></tr>";
->>>>>>> 5fee95079e25dd7529bc03cae008479540bee1ee
             }
         ?>
         </table>
