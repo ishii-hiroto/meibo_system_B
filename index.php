@@ -56,6 +56,60 @@
                 onclick="return confirm('削除ボタンがクリックされました。本当に入力内容を削除してもよろしいですか？');">
             </td>
             </tr>
+<<<<<<< HEAD
+=======
+        <?php
+            $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
+            $DB_USER = "webaccess";
+            $DB_PW = "toMeu4rH";
+            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
+
+            $query_str = "SELECT * FROM member
+                          LEFT JOIN section1_master ON section1_master.ID = member.section_ID
+                          LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
+                          WHERE 1";   // 実行するSQL文を作成して変数に保持
+
+            $where_str = "";
+
+            if(isset($_GET['name']) && !empty($_GET['name'])){
+                $where_str .= " AND name LIKE '%" . $_GET['name'] . "%'";
+            }
+            if(isset($_GET['gender']) && !empty($_GET['gender'])){
+                $where_str .= " AND seibetu = '" . $_GET['gender'] . "'";
+            }
+            if(isset($_GET['section']) && !empty($_GET['section'])){
+                $where_str .= " AND section_ID = '" . $_GET['section'] . "'";
+            }
+            if(isset($_GET['grade']) && !empty($_GET['grade'])){
+                $where_str .= " AND grade_ID = '" . $_GET['grade'] . "'";
+            }
+
+
+            $query_str = $query_str .= $where_str; //あとで修正、平子さんからＦＢ
+
+            echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
+            $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
+            $sql->execute();                                   // SQLを実行する
+            $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
+            echo "検索件数：" . count($result);
+
+
+            $CNT = count($result);
+
+            if($CNT == 0){
+                echo "<tr><td colspan='5'>検索結果なし</td></tr>";
+            }else{
+
+                foreach ($result as $x) {
+                    echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
+                    echo "<td><a href='datail01.php?member_ID=".
+                                $x['member_ID']"'>".
+                                $x['name']."</a>" ."</td>";
+                    echo "<td>" . $x['section_name'] . "</td>";
+                    echo "<td >" . $x['grade_name'] . "</td></tr>";
+                }
+            }
+        ?>
         </table>
     </body>
 </html>
