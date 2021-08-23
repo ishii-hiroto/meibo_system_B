@@ -49,7 +49,7 @@
             </tr>
         </table>
         <hr>
-        <form method="POST" action="./index.php" name='mainform'><!--どこで受け取るか-->
+        <form method="POST" action="./entry02.php" name='mainform'><!--どこで受け取るか-->
         <table>
             <tr>
                 <th>名前</th>
