@@ -102,9 +102,15 @@
 
                 foreach ($result as $x) {
                     echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
+<<<<<<< HEAD
                     echo "<td><a href='datail01.php?member_ID=".
                                 $x['member_ID']"'>".
                                 $x['name']."</a>" ."</td>";
+=======
+                    echo "<td><a href='datail01.php?id=" .
+                        $x['member_ID'] . "'>" .
+                        $x['name'] . "</a></td>";
+>>>>>>> 00dbd68e8cd48a1e2ed71ca2589f3bc0ed8b4121
                     echo "<td>" . $x['section_name'] . "</td>";
                     echo "<td >" . $x['grade_name'] . "</td></tr>";
                 }
