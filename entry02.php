@@ -34,9 +34,9 @@
                             . $grade . "')";
 
             echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
-            $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
-            $sql->execute();                                   // SQLを実行する
-            $result = $sql->fetchAll();
+            // $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
+            // $sql->execute();                                   // SQLを実行する
+            // $result = $sql->fetchAll(); 実行するときに表示
         ?>
     </body>
 </html>
