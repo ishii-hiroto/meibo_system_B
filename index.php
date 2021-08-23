@@ -103,29 +103,23 @@
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
             echo "検索件数：" . count($result);
 
-<<<<<<< HEAD
+
             $CNT = count($result);
 
             if($CNT == 0){
                 echo "<tr><td colspan='5'>検索結果なし</td></tr>";
             }else{
-                foreach ($result as $x)
+
+                foreach ($result as $x) {
                     echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
-                    echo "<td>" . $x['name'] . "</td>";
+                    echo "<td>" .
+                            "<a href='datail01.php'>" .
+                                $x['name'] .
+                            "</a>" .
+                        "</td>";
                     echo "<td>" . $x['section_name'] . "</td>";
                     echo "<td >" . $x['grade_name'] . "</td></tr>";
-=======
-            foreach ($result as $x) {
-                echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
-                echo "<td>".
-                        "<a href='./detail01.php?member_ID=
-                            echo{$member['member_ID']}'>
-                            echo{$member['name']};
-                        </a>" .
-                    "</td>";
-                echo "<td>" . $x['section_name'] . "</td>";
-                echo "<td >" . $x['grade_name'] . "</td></tr>";
->>>>>>> 5fee95079e25dd7529bc03cae008479540bee1ee
+                }
             }
         ?>
         </table>
