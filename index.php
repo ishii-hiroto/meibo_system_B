@@ -119,7 +119,7 @@
             }else{
                 foreach ($result as $x) {
                     echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
-                    echo "<td><a href='datail01.php?id=" .
+                    echo "<td><a href='detail01.php?id=" .
                         $x['member_ID'] . "'>" .
                         $x['name'] . "</a></td>";
                     echo "<td>" . $x['section_name'] . "</td>";
