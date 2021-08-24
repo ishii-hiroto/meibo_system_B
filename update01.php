@@ -48,13 +48,12 @@
                     </td>
                 </tr>
             </table>
-
+        
             <hr>
             <form method="POST" action="update01.php" name='mainform'><!--どこで受け取るのか-->
-            <input type="submit" name="member_ID" value="編集" >
             <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
             </form>
-            
+
             </form>
             <table>
                 <tr>
@@ -64,27 +63,43 @@
 
                 <tr>
                     <th>名前</th>
-                    <td>影山杏</td>
+                    <td><input type="search" name="name" size="20" maxlength="30" placeholder="山田太郎" value=""></td>
                 </tr>
                 <tr>
                     <th>出身地</th>
-                    <td>宮城県</td>
+                    <td><select name="pref">
+                        <?php
+                            include('./include/former.php');
+                            foreach ($pref_array as $pref){
+                            echo "<option value=''>". $pref ."</option>";
+                            }
+                        ?>
+                    </select></td>
                 </tr>
                 <tr>
                     <th>性別</th>
-                    <td>男性</td>
+                    <td><input type="radio" name="gender01" value="1" checked="checked" />男性
+                    <input type="radio" name="gender01" value="2" />女性</td>
                 </tr>
                 <tr>
                     <th>年齢</th>
-                    <td>22</td>
+                    <td><input type="number" name="age01" max="99" min="1" ></td>
                 </tr>
                 <tr>
                     <th>所属部署</th>
-                    <td>第一事業部</td>
+                    <td><input type="radio" name="section01" value="1" checked="checked" />第一事業部
+                    <input type="radio" name="section01" value="2" />第二事業部
+                    <input type="radio" name="section01" value="3" />営業
+                    <input type="radio" name="section01" value="4" />総務
+                    <input type="radio" name="section01" value="5" />人事</td>
                 </tr>
                 <tr>
                     <th>役職</th>
-                    <td>リーダー</td>
+                    <td><input type="radio" name="grade01" value="1" checked="checked" />事業部長
+                    <input type="radio" name="grade01" value="2" />部長
+                    <input type="radio" name="grade01" value="3" />チームリーダー
+                    <input type="radio" name="grade01" value="4" />リーダー
+                    <input type="radio" name="grade01" value="5" />メンバー</td>
                 </tr>
 
                 <tr>
