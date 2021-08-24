@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>test2
+    <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>社員情報詳細</title>
@@ -17,17 +17,11 @@
             $ID = $_GET['id'];
 
             $query_str = "SELECT * FROM member WHERE member.member_ID = $ID";   // 実行するSQL文を作成して変数に保持
-            echo $query_str;
 
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute();                      // SQLを実行する test5
             $result = $sql->fetch();
         ?>
-        <pre>
-            <?php
-                var_dump($result);
-            ?>
-        </pre>
         <table border="1" style="border-collapse:collapse;">
             <?php
             require './include/former.php';
