@@ -123,7 +123,7 @@
                         $x['member_ID'] . "'>" .
                         $x['name'] . "</a></td>";
                     echo "<td>" . $x['section_name'] . "</td>";
-                    echo "<td >" . $x['grade_name'] . "</td></tr>";
+                    echo "<td>" . $x['grade_name'] . "</td></tr>";
                 }
             }
         ?>
