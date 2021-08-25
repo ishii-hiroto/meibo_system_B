@@ -34,13 +34,25 @@
                 echo "<tr><th>役職</th><td>" . $grade_array[$result['grade_ID']] . "</td></tr>";
             ?>
         </table>
-            <input type="button"
-                onclick="location.href='./update01.php?id=
-                    <?php
-                        echo $result['member_ID'];
-                    ?>'" 
-                value="編集">
-            <input type="reset" value="削除"
-            onclick="return confirm('削除ボタンがクリックされました。本当に入力内容を削除してもよろしいですか？');">
+
+        <form method="post" action="update01.php">
+            <input type="submit" name="member_ID" value='編集'>
+        </form>
+
+        <form method='post' action='delete.php' onsubmit="return check()" style="text-align:right">
+            <input type="submit" name="delete" value="削除">
+            <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
+        </form>
+
+        <script type="text/javascript">
+            const del = document.getElementById('del');
+            function check(){
+                if (window.confirm('削除を行います。よろしいですか？')) {
+                    return true;
+                }else{
+                    return false;
+                }
+            };
+        </script>
     </body>
 </html>
