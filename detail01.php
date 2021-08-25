@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>test2
+    <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>社員情報詳細</title>
@@ -17,17 +17,11 @@
             $ID = $_GET['id'];
 
             $query_str = "SELECT * FROM member WHERE member.member_ID = $ID";   // 実行するSQL文を作成して変数に保持
-            echo $query_str;
 
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute();                      // SQLを実行する test5
             $result = $sql->fetch();
         ?>
-        <pre>
-            <?php
-                var_dump($result);
-            ?>
-        </pre>
         <table border="1" style="border-collapse:collapse;">
             <?php
             require './include/former.php';
@@ -40,8 +34,25 @@
                 echo "<tr><th>役職</th><td>" . $grade_array[$result['grade_ID']] . "</td></tr>";
             ?>
         </table>
-            <input type="button" onclick="location.href='./update01.php'" value="編集">
-            <input type="reset" value="削除"
-            onclick="return confirm('削除ボタンがクリックされました。本当に入力内容を削除してもよろしいですか？');">
+
+        <form method="post" action="update01.php">
+            <input type="submit" name="member_ID" value='編集'>
+        </form>
+
+        <form method='post' action='delete.php' onsubmit="return check()" style="text-align:right">
+            <input type="submit" name="delete" value="削除">
+            <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
+        </form>
+
+        <script type="text/javascript">
+            const del = document.getElementById('del');
+            function check(){
+                if (window.confirm('削除を行います。よろしいですか？')) {
+                    return true;
+                }else{
+                    return false;
+                }
+            };
+        </script>
     </body>
 </html>
