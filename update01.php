@@ -4,8 +4,8 @@
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>社員情報詳細</title>
-        <script type="text/javascript">
 
+        <script type="text/javascript">
             function check(){
                 var name01_flag=0;
                 var pref_flag=0;
@@ -41,30 +41,27 @@
         </script>
     </head>
     <body>
+            <td>社員名簿システム</td>
+            <a href="./index.php">トップ画面</a>
+            <a href="./entry01.php">新規社員登録</a> |
+            <form method="POST" action="update02.php" name='updateform'></form>
+            <table border="1" style="border-collapse:collapse;">
+            <?php
+                $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
+                $DB_USER = "webaccess";
+                $DB_PW = "toMeu4rH";
+                $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
-                <td>社簿システム</td>
-                    <a href="./index.php">トップ画面</a>
-                    <a href="./entry01.php">新規社員登録</a> |
-                    <?php
-                        $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
-                        $DB_USER = "webaccess";
-                        $DB_PW = "toMeu4rH";
-                        $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
+                $ID = $_GET['member_ID'];
 
-                        $ID = $_GET['id'];
+                $query_str = "SELECT * FROM member WHERE member.member_ID = $ID";   // 実行するSQL文を作成して変数に保持
 
-                        $query_str = "SELECT * FROM member WHERE member_ID = $ID";   // 実行するSQL文を作成して変数に保持
+                $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
+                $sql->execute();                      // SQLを実行する test5
+                $result = $sql->fetch();
+                ?>
 
-                        $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
-                        $sql->execute();                      // SQLを実行する test5
-                        $result = $sql->fetch();
-                    ?>
-
-
-
-
-
-            <table>
+                <?php require './include/former.php'; ?>
                 <tr>
                     <th>社員ID</th>
                     <td><?php echo $result['member_ID'] ?></td>
@@ -102,12 +99,12 @@
                 </tr>
                 <tr>
                     <th>年齢</th>
-                    <td><input type="text" name="age" id="age" value="<?php echo $result['age'] ?>">歳</td>
+                    <td><input type='number' max='99' min='1' name="age" id="age" value="<?php echo $result['age'] ?>">歳</td>
                 </tr>
                 <tr>
                     <th>所属部署</th>
                     <td>    <?php
-                            foreach ($section_ID_array as $key => $value){
+                            foreach ($section_array as $key => $value){
                                 if($result['section_ID'] == $key ){
                                     echo "<label><input type='radio' name='section_ID' checked='checked' value=". $key .">" . $value . "</label>";
                                 }else{
@@ -119,7 +116,7 @@
                 <tr>
                     <th>役職</th>
                     <td>    <?php
-                            foreach ($grade_ID_array as $key => $value){
+                            foreach ($grade_array as $key => $value){
                                 if($result['grade_ID'] == $key ){
                                     echo "<label><input type='radio' name='grade_ID' checked='checked' value=". $key .">" . $value . "</label>";
                                 }else{
@@ -128,17 +125,8 @@
                             }
                         ?></td>
 
-
-
-
-                        <?php
-                            var_dump($result);
-                        ?>
-
-
-
-
-
+        </table>
+        <table>
                 <tr>
                     <td><input type="button" onclick="check();" value="登録"></td>
                     <td><input type="reset" value="リセット"></td>
