@@ -32,11 +32,13 @@
                             . $age . "', '"
                             . $section . "', '"
                             . $grade . "')";
-
+            $ID=$_GET['id'];
             echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
-            // $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
-            // $sql->execute();                                   // SQLを実行する
-            // $result = $sql->fetchAll(); 実行するときに表示
+            $sql = $pdo->prepare($query_str);   // PDOオブジェクトにSQLを渡す
+            if ($sql->execute()) {
+                header('Location:detail01.php?id=$ID');
+            }
+            $result = $sql->fetch(); //実行するときに表示
         ?>
     </body>
 </html>
