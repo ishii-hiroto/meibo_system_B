@@ -32,7 +32,7 @@
                     window.alert('年齢は必須です');
                     return false;
                 }else if(window.confirm('登録を行います。よろしいですか？')){
-                    location.href="../system/detail01.php";//「OK」の場合はindex.phpに移動
+                    location.href="../system/detail01.php";///「OK」の場合はindex.phpに移動
                 }else{
                     windows.alert('キャンセルされました');//警告ダイアログ
                     return false;//送信を中止
