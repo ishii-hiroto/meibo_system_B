@@ -32,13 +32,24 @@
                             . $age . "', '"
                             . $section . "', '"
                             . $grade . "')";
-            $ID=$_GET['id'];
+            // $ID=$_GET['id']; //entry02のurlにはid乗らないからこれ多分意味ない
             echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
-            $sql = $pdo->prepare($query_str);   // PDOオブジェクトにSQLを渡す
-            if ($sql->execute()) {
-                header('Location:detail01.php?id=$ID');
+            // $sql = $pdo->prepare($query_str);   // PDOオブジェクトにSQLを渡す
+            // $sql->execute();                                    // SQLを実行する
+            // $result = $sql->fetchAll();  //実行するときに表示
+
+            $query_str02 = "SELECT * FROM member WHERE name = '$name' pref = '$pref' seibetu = '$gender' age = '$age' section_ID = '$section' gradeID = '$grade'";
+            echo $query_str02;
+
+            $sql = $pdo->prepare($query_str02);                // PDOオブジェクトにSQLを渡す
+            $sql->execute();                                    // SQLを実行する
+            $result = $sql->fetchAll();
+            foreach($result as $each){
+                $id = $each['member_ID'];
             }
-            $result = $sql->fetch(); //実行するときに表示
+
+            // header('Location:detail01.php?member_ID='.$id); まだできてない
+            exit();
         ?>
     </body>
 </html>
