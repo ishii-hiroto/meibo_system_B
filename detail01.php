@@ -16,7 +16,7 @@
 
             $ID = $_GET['id'];
 
-            $query_str = "SELECT * FROM member WHERE member_ID = $ID";   // 実行するSQL文を作成して変数に保持
+            $query_str = "SELECT * FROM member WHERE member.member_ID = $ID";   // 実行するSQL文を作成して変数に保持
 
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute();                      // SQLを実行する test5
@@ -35,7 +35,7 @@
             ?>
         </table>
 
-        <form method="post" action="update01.php">
+        <form method="post" action="update01.php?member_ID=<?php echo $ID;?>">
             <input type="submit" name="member_ID" value='編集'>
         </form>
 
