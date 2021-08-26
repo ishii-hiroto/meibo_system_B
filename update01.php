@@ -50,39 +50,33 @@
                 </td>
             </tr>
         </table>
-        <form method="POST" action="update01.php" name='mainform'><!--どこで受け取るのか-->
-            <input type="submit" name="member_ID" value="編集" >
-            <input type="hidden" name="member_ID" value="<?php echo $result['member_ID']; ?>" />
-        </form>
-            <table>
-                <tr>
-                    <th>社員ID</th>
-                    <td><input type="text"ID="ID"/></td>
-                </tr>
-                <tr>
-                    <th>名前</th>
-                    <td>影山杏</td>
-                </tr>
-                <tr>
-                    <th>出身地</th>
-                    <td>宮城県</td>
-                </tr>
-                <tr>
-                    <th>性別</th>
-                    <td>男性</td>
-                </tr>
-                <tr>
-                    <th>年齢</th>
-                    <td>22</td>
-                </tr>
-                <tr>
-                    <th>所属部署</th>
-                    <td>第一事業部</td>
-                </tr>
-                <tr>
-                    <th>役職</th>
-                    <td>リーダー</td>
-                </tr>
+        <form method="POST" action="update02.php" name='updateform'></form>
+        <table border="1" style="border-collapse:collapse;">
+            <?php
+                $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
+                $DB_USER = "webaccess";
+                $DB_PW = "toMeu4rH";
+                $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
+
+                $ID = $_GET['member_ID'];
+
+                $query_str = "SELECT * FROM member WHERE member.member_ID = $ID";   // 実行するSQL文を作成して変数に保持
+
+                $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
+                $sql->execute();                      // SQLを実行する test5
+                $result = $sql->fetch();
+
+                require './include/former.php';
+                    echo "<tr><th>社員ID</th><td>" . $result['member_ID'] . "</td></tr>";
+                    echo "<tr><th>名前</th><td><input type='text' value=" . $result['name'] . "></td></tr>";
+                    echo "<tr><th>出身地</th><td>" . $pref_array[$result['pref']] . "</td></tr>";
+                    echo "<tr><th>性別</th><td>" . $gender_array[$result['seibetu']] . "</td></tr>";
+                    echo "<tr><th>年齢</th><td><input type='number' max='99' min='1' value=" . $result['age'] . "></td></tr>";
+                    echo "<tr><th>所属部署</th><td>" . $section_array[$result['section_ID']] . "</td></tr>";
+                    echo "<tr><th>役職</th><td>" . $grade_array[$result['grade_ID']] . "</td></tr>";
+            ?>
+        </table>
+        <table>
                 <tr>
                     <td><input type="button" onclick="check();" value="登録"></td>
                     <td><input type="reset" value="リセット"></td>
