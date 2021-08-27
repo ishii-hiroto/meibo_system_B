@@ -6,46 +6,46 @@
         <title>社員情報詳細</title>
 
         <script type="text/javascript">
-        function check(){
-        var name_flag=0;
-        var pref_flag=0;
-        var age_flag=0;
-        var age_value = document.mainform.age.value;
+            function check(){
+                var name_flag=0;
+                var pref_flag=0;
+                var age_flag=0;
+                var age_value = document.updateform.age.value;
 
-        //入力判定
-        if(document.mainform.name.value==""){
-            name_flag=1;
-        }else if(document.mainform.pref.value=="0"){
-            pref_flag=1;
-        }else if(document.mainform.age.value==""){
-            age_flag=1;
-        }
+                //入力判定
+                if(document.updateform.name.value==""){
+                    name_flag=1;
+                }else if(document.updateform.pref.value==""){
+                    pref_flag=1;
+                }else if(document.updateform.age.value==""){
+                    age_flag=1;
+                }
 
-        //エラー文表示
-        if(name_flag==1){
-            window.alert('名前は必須です');
-            return false;
-        }else if(pref_flag==1){
-            window.alert('都道府県は必須です');
-            return false;
-        }else if(age_flag==1 || age_value < 1 || age_value > 100){
-            window.alert('年齢は必須です');
-            return false;
-        }else if(window.confirm('登録を行います。よろしいですか？')){
-            // location.href="./entry02.php";//「OK」の場合はindex.phpに移動
-            document.mainform.submit();
-        }else{
-            windows.alert('キャンセルされました');//警告ダイアログ　テスト
-            return false;//送信を中止
-        }
-    }
-    </script>
+                //エラー文表示
+                if(name_flag==1){
+                    window.alert('名前は必須です');
+                    return false;
+                }else if(pref_flag==1){
+                    window.alert('都道府県は必須です');
+                    return false;
+                }else if(age_flag==1 || age_value < 1 || age_value > 100){
+                    window.alert('年齢は必須です');
+                    return false;
+                }else if(window.confirm('登録を行います。よろしいですか？')){
+                    // location.href="../system/detail01.php";//「OK」の場合はindex.phpに移動
+                    document.updateform.submit();
+                }else{
+                    windows.alert('キャンセルされました');//警告ダイアログ
+                    return false;//送信を中止
+                }
+            }
+        </script>
     </head>
     <body>
             <td>社員名簿システム</td>
             <a href="./index.php">トップ画面</a>
             <a href="./entry01.php">新規社員登録</a> |
-            <form method="POST" action="update02.php" name='updateform'></form>
+            <form method="POST" action="update02.php" name='updateform'>
             <table border="1" style="border-collapse:collapse;">
             <?php
                 $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
@@ -65,11 +65,11 @@
                 <?php require './include/former.php'; ?>
                 <tr>
                     <th>社員ID</th>
-                    <td><?php echo $result['member_ID'] ?></td>
+                    <td><input type = "hidden" name = "member_ID" value = "<?php echo $result['member_ID'];?>"><?php echo $result['member_ID'];?></td>
                 </tr>
                 <tr>
                     <th>名前</th>
-                    <td><input type="text" name="name" id="name" value="<?php echo $result['name'] ?>"></td>
+                    <td><input type="text" name="name" value="<?php echo $result['name'] ?>"></td>
                 </tr>
                 <tr>
                     <th>出身地</th>
@@ -127,18 +127,12 @@
                         ?></td>
 
         </table>
-
-
-    
-
-
+        <table>
                 <tr>
-                    <td><input type="button" onclick="check();" value="登録"></td>
+                    <td><input type="submit" onclick="check();" value="登録"></td>
                     <td><input type="reset" value="リセット"></td>
-                    <p style="text-align:right">
-                    <input type="reset">
-                </p>
                 </tr>
-    </script>
-</body>
+        </table>
+        </form>
+    </body>
 </html>
