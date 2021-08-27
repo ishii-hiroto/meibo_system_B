@@ -14,7 +14,7 @@
             //入力判定
             if(document.mainform.name01.value==""){
                 name01_flag=1;
-            }else if(document.mainform.pref.value=="0"){
+            }else if(document.mainform.pref.value==""){
                 pref_flag=1;
             }else if(document.mainform.age01.value==""){
                 age01_flag=1;
