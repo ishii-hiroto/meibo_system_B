@@ -55,7 +55,7 @@
             <tr>
                 <th>名前</th>
                 <td>
-                    <input type="text" name="name01" size="20" maxlength="30" placeholder="山田太郎" />
+                    <input type="text" name="name01" size="20" maxlength="30" /> <!--プレースホルダー削除-->
                 </td>
             </tr>
             <tr>
@@ -64,9 +64,9 @@
                     <select name="pref">
                         <?php
                             include './include/former.php';
-                            foreach ($pref_array as $key => $pref){
-                            echo "<option value='" . $key . "'>". $pref ."</option>";
-                            }
+                                foreach ($pref_array as $key => $pref){
+                                    echo "<option value='" . $key . "'>". $pref ."</option>";
+                                }
                         ?>
                     </select>
                 </td>
@@ -75,9 +75,9 @@
                 <th>性別</th>
                 <td>
                     <?php
-                        include './include/gender.php';
+                        include './include/former.php';
                         foreach ($gender_array as $key01 => $gender){
-                        echo "<input type='radio' name='gender01' value='" . $key01 . "' checked='checked'/>".$gender;
+                        echo "<input type='radio' name='gender01' value='" . $key01 . "'/>".$gender; //初期値を男性にしたい
                         }
                     ?>
                 </td>
