@@ -35,15 +35,18 @@
                 echo "<tr><th>役職</th><td>" . $grade_array[$result['grade_ID']] . "</td></tr>";
             ?>
         </table>
+        <table>
+            <form method="post" action="update01.php?member_ID=<?php echo $ID;?>">
+                <tr>
+                    <td><input type="submit" name="member_ID" value='編集'></td>
+            </form>
 
-        <form method="post" action="update01.php?member_ID=<?php echo $ID;?>">
-            <input type="submit" name="member_ID" value='編集'>
-        </form>
-
-        <form method='post' action='delete.php' onsubmit="return check()" style="text-align:right">
-            <input type="submit" name="delete" value="削除">
-            <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" />
-        </form>
+            <form method='post' action='delete.php' onsubmit="return check()" style="text-align:right">
+                    <td><input type="submit" name="delete" value="削除">
+                        <input type="hidden" name="delete" value="<?php echo $result['member_ID']; ?>" /></td>
+                </tr>
+            </form>
+        </table>
 
         <script type="text/javascript">
             const del = document.getElementById('del');
