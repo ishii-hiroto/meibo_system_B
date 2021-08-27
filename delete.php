@@ -16,7 +16,7 @@
             $query_str = "DELETE FROM member WHERE member.member_ID = $ID";   // 実行するSQL文を作成して変数に保持
 
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
-            if ($sql->execute()) {// SQLを実行する test5
+            if ($sql->execute()) {// SQLを実行する 
                 header('Location:index.php');
             }
             $result = $sql->fetch();
