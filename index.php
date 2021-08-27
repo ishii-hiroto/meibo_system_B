@@ -80,26 +80,26 @@
                           WHERE 1";   // 実行するSQL文を作成して変数に保持
 
             $where_str = "";
-            $cond_name = "";
-            $cond_gender = "";
-            $cond_section = "";
-            $cond_grade = "";
+            // $cond_name = "";
+            // $cond_gender = "";
+            // $cond_section = "";
+            // $cond_grade = "";
 
             if(isset($_GET['name']) && !empty($_GET['name'])){
                 $where_str .= " AND name LIKE '%" . $_GET['name'] . "%'";
-                $cond_name = $_GET['name'];
+                // $cond_name = $_GET['name'];
             }
             if(isset($_GET['gender']) && !empty($_GET['gender'])){
                 $where_str .= " AND seibetu = '" . $_GET['gender'] . "'";
-                $cond_gender = $_GET['gender'];
+                // $cond_gender = $_GET['gender'];
             }
             if(isset($_GET['section']) && !empty($_GET['section'])){
                 $where_str .= " AND section_ID = '" . $_GET['section'] . "'";
-                $cond_section = $_GET['section'];
+                // $cond_section = $_GET['section'];
             }
             if(isset($_GET['grade']) && !empty($_GET['grade'])){
                 $where_str .= " AND grade_ID = '" . $_GET['grade'] . "'";
-                $cond_grade = $_GET['grade'];
+                // $cond_grade = $_GET['grade'];
             }
 
 

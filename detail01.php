@@ -4,6 +4,7 @@
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <title>社員情報詳細</title>
+        <!---これが最新版です08/27-->
     </head>
     <body>
                 <a href="./index.php">トップ画面</a>
