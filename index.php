@@ -16,21 +16,73 @@
         </table>
         <hr>
 
+        <?php
+            $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
+            $DB_USER = "webaccess";
+            $DB_PW = "toMeu4rH";
+            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
+
+            $query_str = "SELECT * FROM member
+                          LEFT JOIN section1_master ON section1_master.ID = member.section_ID
+                          LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
+                          WHERE 1";   // 実行するSQL文を作成して変数に保持
+
+            $where_str = "";
+            $cond_name = "";
+            $cond_gender = "";
+            $cond_section = "";
+            $cond_grade = "";
+
+            if(isset($_GET['name']) && !empty($_GET['name'])){
+                $where_str .= " AND name LIKE '%" . $_GET['name'] . "%'";
+                $cond_name = $_GET['name'];
+            }
+            if(isset($_GET['gender']) && !empty($_GET['gender'])){
+                $where_str .= " AND seibetu = '" . $_GET['gender'] . "'";
+                $cond_gender = $_GET['gender'];
+            }
+            if(isset($_GET['section']) && !empty($_GET['section'])){
+                $where_str .= " AND section_ID = '" . $_GET['section'] . "'";
+                $cond_section = $_GET['section'];
+            }
+            if(isset($_GET['grade']) && !empty($_GET['grade'])){
+                $where_str .= " AND grade_ID = '" . $_GET['grade'] . "'";
+                $cond_grade = $_GET['grade'];
+            }
+
+
+            $query_str = $query_str .= $where_str; //あとで修正、平子さんからＦＢ
+
+            echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
+            $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
+            $sql->execute();                                   // SQLを実行する
+            $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
+            echo "検索件数：" . count($result);
+        ?>
         <form method="GET" action="./index.php" name='searchform'>
         <table>
             <tr>
                 <td>名前：</td>
-                <td class>
-                    <input type="search" name="name" size="20" maxlength="30" placeholder="山田太郎" value="">
+                <td>
+                    <input type="search" name="name" size="20" maxlength="30"  value="<?php echo $cond_name;?>"> <!--プレースホルダー削除-->
                 </td>
             </tr>
+        </table>
+        <?php require './include/former.php'; ?>
+        <table>
             <tr>
                 <td>性別：</td>
                 <td>
                     <select name="gender">
-                        <option value="" selected>すべて</option>
-                        <option value="1">男性</option>
-                        <option value="2">女性</option>
+                        <?php
+                            foreach ($gender_array as $key => $value){
+                                if($cond_gender == $key ){
+                                    echo "<option selected='selected' value=". $key .">" . $value . "</option>";
+                                }else{
+                                    echo "<option value=". $key .">" . $value . "</option>";
+                                }
+                            }
+                        ?>
                     </select>
                 </td>
                 <td>部署：</td>
@@ -55,10 +107,13 @@
                         <option value="5">メンバー</option>
                     </select>
                 </td>
-                <tr>
-                    <td><input type="submit" value="検索"></td>
-                    <td><input type="reset" value="リセットする"></td>
-                </tr>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><input type="submit" value="検索"></td>
+                <td><input type="reset" value="リセットする"></td>
+            </tr>
         </table>
         <hr>
         <table border="1" style="border-collapse:collapse;">
@@ -68,65 +123,22 @@
                 <th>部署</th>
                 <th>役職</th>
             </tr>
-        <?php
-            $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
-            $DB_USER = "webaccess";
-            $DB_PW = "toMeu4rH";
-            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
+            <?php
+                $CNT = count($result);
 
-            $query_str = "SELECT * FROM member
-                          LEFT JOIN section1_master ON section1_master.ID = member.section_ID
-                          LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
-                          WHERE 1";   // 実行するSQL文を作成して変数に保持
-
-            $where_str = "";
-            // $cond_name = "";
-            // $cond_gender = "";
-            // $cond_section = "";
-            // $cond_grade = "";
-
-            if(isset($_GET['name']) && !empty($_GET['name'])){
-                $where_str .= " AND name LIKE '%" . $_GET['name'] . "%'";
-                // $cond_name = $_GET['name'];
-            }
-            if(isset($_GET['gender']) && !empty($_GET['gender'])){
-                $where_str .= " AND seibetu = '" . $_GET['gender'] . "'";
-                // $cond_gender = $_GET['gender'];
-            }
-            if(isset($_GET['section']) && !empty($_GET['section'])){
-                $where_str .= " AND section_ID = '" . $_GET['section'] . "'";
-                // $cond_section = $_GET['section'];
-            }
-            if(isset($_GET['grade']) && !empty($_GET['grade'])){
-                $where_str .= " AND grade_ID = '" . $_GET['grade'] . "'";
-                // $cond_grade = $_GET['grade'];
-            }
-
-
-            $query_str = $query_str .= $where_str; //あとで修正、平子さんからＦＢ
-
-            echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
-            $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
-            $sql->execute();                                   // SQLを実行する
-            $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
-            echo "検索件数：" . count($result);
-
-
-            $CNT = count($result);
-
-            if($CNT == 0){
-                echo "<tr><td colspan='5'>検索結果なし</td></tr>";
-            }else{
-                foreach ($result as $x) {
-                    echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
-                    echo "<td><a href='detail01.php?id=" .
-                        $x['member_ID'] . "'>" .
-                        $x['name'] . "</a></td>";
-                    echo "<td>" . $x['section_name'] . "</td>";
-                    echo "<td>" . $x['grade_name'] . "</td></tr>";
+                if($CNT == 0){
+                    echo "<tr><td colspan='5'>検索結果なし</td></tr>";
+                }else{
+                    foreach ($result as $x) {
+                        echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
+                        echo "<td><a href='detail01.php?id=" .
+                            $x['member_ID'] . "'>" .
+                            $x['name'] . "</a></td>";
+                        echo "<td>" . $x['section_name'] . "</td>";
+                        echo "<td>" . $x['grade_name'] . "</td></tr>";
+                    }
                 }
-            }
-        ?>
+            ?>
         </table>
         <pre>
             <?php
