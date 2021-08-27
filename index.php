@@ -3,6 +3,8 @@
     <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- ↓bootsstrapのStarter template -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <title>社員情報検索</title>
     </head>
     <body>
@@ -20,7 +22,7 @@
         <table>
             <tr>
                 <td>名前：</td>
-                <td class>
+                <td>
                     <input type="search" name="name" size="20" maxlength="30" placeholder="山田太郎" value="">
                 </td>
             </tr>
@@ -56,12 +58,13 @@
                     </select>
                 </td>
                 <tr>
-                    <td><input type="submit" value="検索"></td>
-                    <td><input type="reset" value="リセットする"></td>
+                    <td><input type="submit"class="btn btn-secondary"value="検索"></td>
+                    <td><input type="reset" class="btn btn-secondary"value="リセットする"></td>
                 </tr>
         </table>
         <hr>
-        <table border="1" style="border-collapse:collapse;">
+        <!-- <table border="1" style="border-collapse:collapse;"> -->
+        <table class='table table-striped table-info'>
             <tr>
                 <th>社員ID</th>
                 <th>名前</th>
@@ -80,26 +83,26 @@
                           WHERE 1";   // 実行するSQL文を作成して変数に保持
 
             $where_str = "";
-            // $cond_name = "";
-            // $cond_gender = "";
-            // $cond_section = "";
-            // $cond_grade = "";
+            $cond_name = "";
+            $cond_gender = "";
+            $cond_section = "";
+            $cond_grade = "";
 
             if(isset($_GET['name']) && !empty($_GET['name'])){
                 $where_str .= " AND name LIKE '%" . $_GET['name'] . "%'";
-                // $cond_name = $_GET['name'];
+                $cond_name = $_GET['name'];
             }
             if(isset($_GET['gender']) && !empty($_GET['gender'])){
                 $where_str .= " AND seibetu = '" . $_GET['gender'] . "'";
-                // $cond_gender = $_GET['gender'];
+                $cond_gender = $_GET['gender'];
             }
             if(isset($_GET['section']) && !empty($_GET['section'])){
                 $where_str .= " AND section_ID = '" . $_GET['section'] . "'";
-                // $cond_section = $_GET['section'];
+                $cond_section = $_GET['section'];
             }
             if(isset($_GET['grade']) && !empty($_GET['grade'])){
                 $where_str .= " AND grade_ID = '" . $_GET['grade'] . "'";
-                // $cond_grade = $_GET['grade'];
+                $cond_grade = $_GET['grade'];
             }
 
 
@@ -127,11 +130,15 @@
                 }
             }
         ?>
+
         </table>
         <pre>
             <?php
                 var_dump($result);
             ?>
         </pre>
+        <!-- ↓bootsstrapのStarter template -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
     </body>
 </html>
