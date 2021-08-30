@@ -26,7 +26,8 @@
 
             $ID = $_GET['id'];
 
-            $query_str = "SELECT * FROM member WHERE member.member_ID =" . $ID;   // 実行するSQL文を作成して変数に保持
+            $query_str = "SELECT * FROM member LEFT JOIN section1_master ON section1_master.ID = member.section_ID
+                          LEFT JOIN grade_master ON grade_master.ID = member.grade_ID WHERE member.member_ID =" . $ID;   // 実行するSQL文を作成して変数に保持
 
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
             $sql->execute();                      // SQLを実行する test5
@@ -41,8 +42,8 @@
                 echo "<tr><th>出身地</th><td>" . $pref_array[$result['pref']] . "</td></tr>";
                 echo "<tr><th>性別</th><td>" . $gender_array[$result['seibetu']] . "</td></tr>";
                 echo "<tr><th>年齢</th><td>" . $result['age'] . "</td></tr>";
-                echo "<tr><th>所属部署</th><td>" . $section_array[$result['section_ID']] . "</td></tr>";
-                echo "<tr><th>役職</th><td>" . $grade_array[$result['grade_ID']] . "</td></tr>";
+                echo "<tr><th>所属部署</th><td>" . $result['section_name'] . "</td></tr>";
+                echo "<tr><th>役職</th><td>" . $result['grade_name'] . "</td></tr>";
             ?>
         </table>
         <table>

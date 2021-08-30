@@ -24,7 +24,7 @@
                     age_flag=1;
                 }
 
-                //エラー文表示
+                //エラー表示
                 if(name_flag==1){
                     window.alert('名前は必須です');
                     return false;
@@ -32,7 +32,7 @@
                     window.alert('都道府県は必須です');
                     return false;
                 }else if(age_flag==1 || age_value < 1 || age_value > 100){
-                    window.alert('年齢は必須です');
+                    window.alert('年齢は必須です/数値を入力してください/1-99の範囲で入力してください');
                     return false;
                 }else if(window.confirm('登録を行います。よろしいですか？')){
                     // location.href="../system/detail01.php";//「OK」の場合はindex.phpに移動
@@ -97,19 +97,24 @@
                 </tr>
                 <tr>
                     <th>性別</th>
-                    <td>  <?php
-                            foreach ($gender_array as $key => $value){
-                                if($result['seibetu'] == $key ){
-                                    echo "<label><input type='radio' name='seibetu' checked='checked' value=". $key .">" . $value . "</label>";
-                                }else{
-                                    echo "<label><input type='radio' name='seibetu' value=". $key .">" . $value . "</label>";
-                                }
-                            }
-                       ?></td>
+                    <td>
+                        <?php
+                            foreach($gender_array as $key => $value){
+                                 // if($key==){
+                                 //    echo "";
+                                  if($key==1){
+                                    echo "<label><input type='radio' name='gender' value='" . $key . "'checked='checked'/>" . $value . "</label>";
+                                  }
+                                  if($key==2){
+                                    echo "<label><input type='radio' name='gender' value='" . $key . "'/>" . $value . "</label>";
+                                  }
+                              }
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>年齢</th>
-                    <td><input type='number' max='99' min='1' name="age" id="age" value="<?php echo $result['age'] ?>">歳</td>
+                    <td><input type='number' max='99' min='1' name="age" value="<?php echo $result['age'] ?>">歳</td>
                 </tr>
                 <tr>
                     <th>所属部署</th>

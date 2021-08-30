@@ -53,7 +53,7 @@
 
             $query_str = $query_str .= $where_str; //あとで修正、平子さんからＦＢ
 
-            echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
+            // echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
             $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
             $sql->execute();                                   // SQLを実行する
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
@@ -88,14 +88,14 @@
 
                         foreach($result2 as $s){
                             if($cond_section == $s['ID']){
-                                echo "<option value=" . $s['ID'] . "selected>" . $s['section_name'] . "</option>";
+                                echo "<option value='" . $s['ID'] . "' selected>" . $s['section_name'] . "</option>";
                             }else{
-                                echo "<option value=" . $s['ID'] . ">" . $s['section_name'] . "</option>";
+                                echo "<option value='" . $s['ID'] . "'>" . $s['section_name'] . "</option>";
                             }
                         }
                     echo"</select></td>";
 
-                    $query_str3 = "SELECT * FROM grade_master WHERE 1";
+                    $query_str3 = "SELECT ID, grade_name FROM grade_master WHERE 1";
 
                     $sql3 = $pdo->prepare($query_str3);                  // PDOオブジェクトにSQLを渡す
                     $sql3->execute();                                   // SQLを実行する
@@ -105,7 +105,10 @@
                         <option value='' selected>すべて</option>";
 
                         foreach($result3 as $g){
-                            echo "<option value=" . $g['ID'] . ">" . $g['grade_name'] . "</option>";
+                            if($cond_grade == $g['ID']){
+                                echo "<option value='" . $g['ID'] . "' selected>" . $g['grade_name'] . "</option>";
+                            }
+                            echo "<option value='" . $g['ID'] . "'>" . $g['grade_name'] . "</option>";
                         }
 
                     echo"</select></td></tr>";
@@ -145,11 +148,6 @@
                 }
             ?>
         </table>
-        <pre>
-            <?php
-                var_dump($result);
-            ?>
-        </pre>
         <!-- ↓bootsstrapのStarter template -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
