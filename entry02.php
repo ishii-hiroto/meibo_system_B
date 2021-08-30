@@ -32,7 +32,7 @@
                             . $age . "', '"
                             . $section . "', '"
                             . $grade . "')";
-            // $ID=$_GET['id']; //entry02のurlにはid乗らないからこれ多分意味ない
+            // $ID=$_GET['id']; //entry02のurlにはid乗らないからこれ多分意味ないい
             echo $query_str;                                   // 実行するSQL文を画面に表示するだけ（デバッグプリント
             $sql = $pdo->prepare($query_str);   // PDOオブジェクトにSQLを渡す
             $sql->execute();                                    // SQLを実行する
@@ -48,7 +48,7 @@
             //     $id = $each['member_ID'];
             // }
             $id = $pdo->lastInsertId('member_ID');
-            header('Location:detail01.php?id='.$id); 
+            header('Location:detail01.php?id='.$id);
             exit();
         ?>
     </body>
