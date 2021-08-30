@@ -24,7 +24,7 @@
                     age_flag=1;
                 }
 
-                //エラー文表示
+                //エラー表示
                 if(name_flag==1){
                     window.alert('名前は必須です');
                     return false;
@@ -97,15 +97,20 @@
                 </tr>
                 <tr>
                     <th>性別</th>
-                    <td>  <?php
-                            foreach ($gender_array as $key => $value){
-                                if($result['seibetu'] == $key ){
-                                    echo "<label><input type='radio' name='seibetu' checked='checked' value=". $key .">" . $value . "</label>";
-                                }else{
-                                    echo "<label><input type='radio' name='seibetu' value=". $key .">" . $value . "</label>";
-                                }
-                            }
-                       ?></td>
+                    <td>
+                        <?php
+                            foreach($gender_array as $key => $value){
+                                 // if($key==){
+                                 //    echo "";
+                                  if($key==1){
+                                    echo "<label><input type='radio' name='gender' value='" . $key . "'checked='checked'/>" . $value . "</label>";
+                                  }
+                                  if($key==2){
+                                    echo "<label><input type='radio' name='gender' value='" . $key . "'/>" . $value . "</label>";
+                                  }
+                              }
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <th>年齢</th>
