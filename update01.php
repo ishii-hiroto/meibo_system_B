@@ -3,12 +3,9 @@
     <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <!-- ↓bootsstrapのStarter template -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <title>社員情報詳細</title>
 
         <script type="text/javascript">
-            //入力フォームに対してバリデーションチェック
             function check(){
                 var name_flag=0;
                 var pref_flag=0;
@@ -45,17 +42,11 @@
         </script>
     </head>
     <body>
-            <table>
-                <tr>
-                    <big>社員名簿システム
-                        | <a href="./index.php">トップ画面</a>
-                        | <a href="./entry01.php">新規社員登録へ</a> |
-                </tr>
-            </table>
-            <hr>
+            <td>社員名簿システム</td>
+            <a href="./index.php">トップ画面</a>
+            <a href="./entry01.php">新規社員登録</a> |
             <form method="POST" action="update02.php" name='updateform'>
-            <!--table border="1" style="border-collapse:collapse;"-->
-            <table class='table table-striped table-info'>
+            <table border="1" style="border-collapse:collapse;">
             <?php
                 $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
                 $DB_USER = "webaccess";
@@ -138,12 +129,10 @@
         </table>
         <table>
                 <tr>
-                    <td><input type="submit" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td>
-                    <td><input type="reset" class="btn btn-secondary"Secondaryvalue="リセット"></td>
+                    <td><input type="submit" onclick="check();" value="登録"></td>
+                    <td><input type="reset" value="リセット"></td>
                 </tr>
         </table>
         </form>
-        <!-- ↓bootsstrapのStarter template -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     </body>
 </html>

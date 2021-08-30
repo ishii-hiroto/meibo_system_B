@@ -122,7 +122,7 @@
         </table>
         <table>
             <tr>
-                <td><input type="button" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td>
+                <td><input type="button" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td> 
                 <td><input type="reset" class="btn btn-secondary"Secondary value="リセット"></td>
             </tr>
         </table>
