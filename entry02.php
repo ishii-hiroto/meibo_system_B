@@ -48,7 +48,7 @@
             //     $id = $each['member_ID'];
             // }
             $id = $pdo->lastInsertId('member_ID');
-            header('Location:detail01.php?member_ID='.$id); 
+            header('Location:detail01.php?id='.$id); 
             exit();
         ?>
     </body>
