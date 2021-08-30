@@ -24,7 +24,7 @@
                     age_flag=1;
                 }
 
-                //エラー文表示
+                //エラー表示
                 if(name_flag==1){
                     window.alert('名前は必須です');
                     return false;
