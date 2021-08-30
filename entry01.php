@@ -80,7 +80,7 @@
                     <?php
                         include './include/former.php';
                         // foreach ($gender_array as $key01 => $gender){
-                        //     echo "<input type='radio' name='gender01' value='" . $key01 . "'/>" . $gender; //初期値を男性にしたい
+                        //     echo "<input type='radio' name='gender01' value='" . $key01 . "'/>" . $gender; //初期値を男性にしたいい
                         // }
                         foreach($gender_array as $key01 => $gender){
                          // if($key01==){
@@ -122,7 +122,7 @@
         </table>
         <table>
             <tr>
-                <td><input type="button" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td> 
+                <td><input type="button" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td>
                 <td><input type="reset" class="btn btn-secondary"Secondary value="リセット"></td>
             </tr>
         </table>
