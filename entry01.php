@@ -76,8 +76,18 @@
                 <td>
                     <?php
                         include './include/former.php';
-                        foreach ($gender_array as $key01 => $gender){
-                        echo "<input type='radio' name='gender01' value='" . $key01 . "'/>".$gender; //初期値を男性にしたい
+                        // foreach ($gender_array as $key01 => $gender){
+                        //     echo "<input type='radio' name='gender01' value='" . $key01 . "'/>" . $gender; //初期値を男性にしたい
+                        // }
+                        foreach($gender_array as $key01 => $gender){
+                         // if($key01==){
+                         //    echo "";
+                          if($key01==1){
+                            echo "<input type='radio' name='gender01' value='" . $key01 . "'checked='checked'/>" . $gender;
+                          }
+                          if($key01==2){
+                            echo "<input type='radio' name='gender01' value='" . $key01 . "'/>" . $gender;
+                          }
                         }
                     ?>
                 </td>
