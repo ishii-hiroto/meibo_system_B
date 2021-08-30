@@ -8,24 +8,35 @@
         <title>社員情報検索</title>
     </head>
     <body>
-        <table>
+        <table align="center">
             <tr>
-                <big><h1>社員名簿システム</h1>
-                | <a href="./index.php">トップ画面</a>
-                | <a href="./entry01.php">新規社員登録へ</a> |
+                <td>
+                    <span style="font-weight: bold; font-family: Noto Sans JP, sans-serif; font-size: 35pt">
+                        社員名簿システム</span>
+                </td>
             </tr>
         </table>
+        <table align="right">
+            <tr>
+                <td>
+                    <span style="font-family: Noto Sans JP, sans-serif; font-size: 17pt">
+                        | <a  href="./index.php">トップ画面</a>
+                        | <a href="./entry01.php">新規社員登録へ</a> |
+                    </span>
+                </td>
+            </tr>
+        </table><br>
         <hr>
-             <?php
-             $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
-             $DB_USER = "webaccess";
-             $DB_PW = "toMeu4rH";
-             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
+        <?php
+            $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
+            $DB_USER = "webaccess";
+            $DB_PW = "toMeu4rH";
+            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
-             $query_str = "SELECT * FROM member
-             LEFT JOIN section1_master ON section1_master.ID = member.section_ID
-             LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
-            WHERE 1";   // 実行するSQL文を作成して変数に保持
+            $query_str = "SELECT * FROM member
+                          LEFT JOIN section1_master ON section1_master.ID = member.section_ID
+                          LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
+                          WHERE 1";   // 実行するSQL文を作成して変数に保持
 
             $where_str = "";
             $cond_name = "";
@@ -58,11 +69,12 @@
             $sql->execute();                                   // SQLを実行する
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
         ?>
-                <form method="GET" action="./index.php" name='searchform' style="text-align:center">    
-                    名前： <input type="search" name="name" size="20" maxlength="30"  value="<?php echo $cond_name;?>"> <!--プレースホルダー削除-->
-                    <?php require './include/former.php'; ?>
-                    性別：<select name="gender">
-                        <?php
+        <form method="GET" action="./index.php" name='searchform' style="text-align:center">
+        <span style="text-align:center">
+            名前：<input type="search" name="name" size="20" maxlength="30"  value="<?php echo $cond_name;?>">
+            性別：<select name="gender">
+                    <?php
+                        require './include/former.php';
                             foreach ($gender_array as $key => $value){
                                 if($cond_gender == $key ){
                                     echo "<option selected='selected' value=". $key .">" . $value . "</option>";
@@ -70,51 +82,49 @@
                                     echo "<option value=". $key .">" . $value . "</option>";
                                 }
                             }
-                        ?>
-                    </select>
-                </td>
-                <?php
-                    $query_str2 = "SELECT ID, section_name FROM section1_master WHERE 1";
+                    ?>
+                  </select>
+            <?php
+                $query_str2 = "SELECT ID, section_name FROM section1_master WHERE 1";
 
-                    $sql2 = $pdo->prepare($query_str2);                  // PDOオブジェクトにSQLを渡す
-                    $sql2->execute();                                   // SQLを実行する
-                    $result2 = $sql2->fetchAll();                        // 実行結果を取得して$resultに代入する
+                $sql2 = $pdo->prepare($query_str2);                  // PDOオブジェクトにSQLを渡す
+                $sql2->execute();                                   // SQLを実行する
+                $result2 = $sql2->fetchAll();                        // 実行結果を取得して$resultに代入する
 
 
-                    // var_dump($result2);
+                // var_dump($result2);
 
-                    echo "<td>部署：</td><td><select name='section'>
+                echo "部署：<select name='section'>
+                <option value='' selected>すべて</option>";
+
+                    foreach($result2 as $s){
+                        if($cond_section == $s['ID']){
+                            echo "<option value='" . $s['ID'] . "' selected>" . $s['section_name'] . "</option>";
+                        }else{
+                            echo "<option value='" . $s['ID'] . "'>" . $s['section_name'] . "</option>";
+                        }
+                    }
+                echo"</select> ";
+
+                $query_str3 = "SELECT ID, grade_name FROM grade_master WHERE 1";
+
+                $sql3 = $pdo->prepare($query_str3);                  // PDOオブジェクトにSQLを渡す
+                $sql3->execute();                                   // SQLを実行する
+                $result3 = $sql3->fetchAll();                        // 実行結果を取得して$resultに代入する
+
+                echo "役職：<select name='grade'>
                     <option value='' selected>すべて</option>";
 
-                        foreach($result2 as $s){
-                            if($cond_section == $s['ID']){
-                                echo "<option value='" . $s['ID'] . "' selected>" . $s['section_name'] . "</option>";
-                            }else{
-                                echo "<option value='" . $s['ID'] . "'>" . $s['section_name'] . "</option>";
-                            }
+                    foreach($result3 as $g){
+                        if($cond_grade == $g['ID']){
+                            echo "<option value='" . $g['ID'] . "' selected>" . $g['grade_name'] . "</option>";
                         }
-                    echo"</select></td>";
+                        echo "<option value='" . $g['ID'] . "'>" . $g['grade_name'] . "</option>";
+                    }
 
-                    $query_str3 = "SELECT ID, grade_name FROM grade_master WHERE 1";
-
-                    $sql3 = $pdo->prepare($query_str3);                  // PDOオブジェクトにSQLを渡す
-                    $sql3->execute();                                   // SQLを実行する
-                    $result3 = $sql3->fetchAll();                        // 実行結果を取得して$resultに代入する
-
-                    echo "<td>役職：</td><td><select name='grade'>
-                        <option value='' selected>すべて</option>";
-
-                        foreach($result3 as $g){
-                            if($cond_grade == $g['ID']){
-                                echo "<option value='" . $g['ID'] . "' selected>" . $g['grade_name'] . "</option>";
-                            }
-                            echo "<option value='" . $g['ID'] . "'>" . $g['grade_name'] . "</option>";
-                        }
-
-                    echo"</select></td></tr>";
-                ?>
-        </table>
-        <table>
+                echo"</select></span>";
+            ?>
+        <table align="center">
             <tr>
                 <td><input type="submit" class="btn btn-secondary"Secondary value="検索"></td>
                 <td><input type="reset" class="btn btn-secondary"Secondaryvalue="リセットする"></td>
@@ -122,12 +132,12 @@
         </table>
         <hr>
         <!-- <table border="1" style="border-collapse:collapse;"> -->
-        <table class='table table-striped table-info'>
+        <table class='table table-striped table-info' style='width:700px' align='center'>
             <tr>
-                <th>社員ID</th>
-                <th>名前</th>
-                <th>部署</th>
-                <th>役職</th>
+                <th style="text-align:center">社員ID</th>
+                <th style="text-align:center">名前</th>
+                <th style="text-align:center">部署</th>
+                <th style="text-align:center">役職</th>
             </tr>
             <?php
                 echo "検索件数：" . count($result);
@@ -138,7 +148,7 @@
                     echo "<tr><td colspan='5'>検索結果なし</td></tr>";
                 }else{
                     foreach ($result as $x) {
-                        echo "<tr><td style='text-align: right'>" . $x['member_ID'] . "</td>";
+                        echo "<tr><td>" . $x['member_ID'] . "</td>";
                         echo "<td><a href='detail01.php?id=" .
                             $x['member_ID'] . "'>" .
                             $x['name'] . "</a></td>";

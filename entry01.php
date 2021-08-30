@@ -44,25 +44,35 @@
         </script>
     </head>
     <body>
-        <table>
+        <table align="center">
             <tr>
-                <big>社員名簿システム
-                | <a href="./index.php">トップ画面</a>
-                | <a href="./entry01.php">新規社員登録</a> |
-
+                <td>
+                    <span style="font-weight: bold; font-family: Noto Sans JP, sans-serif; font-size: 35pt">
+                        社員名簿システム</span>
+                </td>
             </tr>
         </table>
+        <table align="right">
+            <tr>
+                <td>
+                    <span style="font-family: Noto Sans JP, sans-serif; font-size: 17pt">
+                        | <a  href="./index.php">トップ画面</a>
+                        | <a href="./entry01.php">新規社員登録へ</a> |
+                    </span>
+                </td>
+            </tr>
+        </table><br>
         <hr>
         <form method="POST" action="./entry02.php" name='mainform'><!--どこで受け取るか-->
-        <table class='table table-striped table-info'>
+        <table class='table table-striped table-info' style='width:700px' align='center'>
             <tr>
-                <th>名前</th>
+                <th style="text-align:center">名前</th>
                 <td>
                     <input type="text" name="name01" size="20" maxlength="30" /> <!--プレースホルダー削除-->
                 </td>
             </tr>
             <tr>
-                <th>出身地</th>
+                <th style="text-align:center">出身地</th>
                 <td>
                     <select name="pref">
                         <?php
@@ -75,7 +85,7 @@
                 </td>
             </tr>
             <tr>
-                <th>性別</th>
+                <th style="text-align:center">性別</th>
                 <td>
                     <?php
                         include './include/former.php';
@@ -98,11 +108,11 @@
                 </td>
             </tr>
             <tr>
-                <th>年齢</th>
+                <th style="text-align:center">年齢</th>
                 <td><input type="number" name="age01" max="99" min="1" > 歳</td>
             </tr>
             <tr>
-                <th>所属部署</th>
+                <th style="text-align:center">所属部署</th>
                 <td>
                     <?php
                         $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
@@ -131,7 +141,7 @@
                         $sql3->execute();                                   // SQLを実行する
                         $result3 = $sql3->fetchAll();                        // 実行結果を取得して$resultに代入する
 
-                        echo "<tr><th>役職</th><td>";
+                        echo "<tr><th style='text-align:center'>役職</th><td>";
                         foreach($result3 as $g){
                             if($g['ID']==1){
                                 echo "<input type='radio' id='grade_radio1' name='grade01' value='" . $g['ID'] . "' checked='checked'><label for = 'grade_radio1'>" . $g['grade_name'] . "</label>";
@@ -144,7 +154,7 @@
                         echo "</td></tr>";
                     ?>
         </table>
-        <table>
+        <table align="center"> 
             <tr>
                 <td><input type="button" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td>
                 <td><input type="reset" class="btn btn-secondary"Secondary value="リセット"></td>
