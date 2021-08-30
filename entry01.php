@@ -79,9 +79,9 @@
                 <td>
                     <?php
                         include './include/former.php';
-                        foreach ($gender_array as $key01 => $gender){
-                        echo "<input type='radio' name='gender01' value='" . $key01 . "'/>".$gender; //初期値を男性にしたい
-                        }
+                            foreach ($gender_array as $key01 => $gender){
+                                echo "<input type='radio' name='gender01' value='" . $key01 . "'/>".$gender; //初期値を男性にしたい
+                            }
                     ?>
                 </td>
             </tr>
