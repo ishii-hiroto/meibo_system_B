@@ -125,7 +125,7 @@
         </table>
         <table>
             <tr>
-                <td><input type="submit" class="btn btn-secondary"Secondary value="検索"></td>
+                <td><input type="submit" class="btn btn-secondary"Secondary value="検索"></td>  
                 <td><input type="reset" class="btn btn-secondary"Secondaryvalue="リセットする"></td>
             </tr>
         </table>
