@@ -10,23 +10,22 @@
     <body>
         <table>
             <tr>
-                <big>社員名簿システム
+                <big><h1>社員名簿システム</h1>
                 | <a href="./index.php">トップ画面</a>
                 | <a href="./entry01.php">新規社員登録へ</a> |
             </tr>
         </table>
         <hr>
+             <?php
+             $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
+             $DB_USER = "webaccess";
+             $DB_PW = "toMeu4rH";
+             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
-        <?php
-            $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
-            $DB_USER = "webaccess";
-            $DB_PW = "toMeu4rH";
-            $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
-
-            $query_str = "SELECT * FROM member
-                          LEFT JOIN section1_master ON section1_master.ID = member.section_ID
-                          LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
-                          WHERE 1";   // 実行するSQL文を作成して変数に保持
+             $query_str = "SELECT * FROM member
+             LEFT JOIN section1_master ON section1_master.ID = member.section_ID
+             LEFT JOIN grade_master ON grade_master.ID = member.grade_ID
+            WHERE 1";   // 実行するSQL文を作成して変数に保持
 
             $where_str = "";
             $cond_name = "";
@@ -59,21 +58,10 @@
             $sql->execute();                                   // SQLを実行する
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
         ?>
-        <form method="GET" action="./index.php" name='searchform'>
-        <table>
-            <tr>
-                <td>名前：</td>
-                <td>
-                    <input type="search" name="name" size="20" maxlength="30" value="<?php echo $cond_name;?>"> <!--プレースホルダー削除-->
-                </td>
-            </tr>
-        </table>
-        <?php require './include/former.php'; ?>
-        <table>
-            <tr>
-                <td>性別：</td>
-                <td>
-                    <select name="gender">
+                <form method="GET" action="./index.php" name='searchform' style="text-align:center">    
+                    名前： <input type="search" name="name" size="20" maxlength="30"  value="<?php echo $cond_name;?>"> <!--プレースホルダー削除-->
+                    <?php require './include/former.php'; ?>
+                    性別：<select name="gender">
                         <?php
                             foreach ($gender_array as $key => $value){
                                 if($cond_gender == $key ){
@@ -125,7 +113,7 @@
         </table>
         <table>
             <tr>
-                <td><input type="submit" class="btn btn-secondary"Secondary value="検索"></td>  
+                <td><input type="submit" class="btn btn-secondary"Secondary value="検索"></td>
                 <td><input type="reset" class="btn btn-secondary"Secondaryvalue="リセットする"></td>
             </tr>
         </table>
