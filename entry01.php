@@ -92,6 +92,18 @@
             <tr>
                 <th>所属部署</th>
                 <td>
+                    <?php
+                        $query_str2 = "SELECT ID, section_name FROM section1_master WHERE 1";
+
+                        $sql2 = $pdo->prepare($query_str2);                  // PDOオブジェクトにSQLを渡す
+                        $sql2->execute();                                   // SQLを実行する
+                        $result2 = $sql2->fetchAll();                        // 実行結果を取得して$resultに代入する
+
+                        foreach($result2 as $s){
+                            echo "<input type='radio' name='section1' value=" . $s['ID'] . ">" . $s['grade_name'];
+                        }
+
+                     ?>
                     <input type="radio" name="section01" value="1" checked="checked" />第一事業部
                     <input type="radio" name="section01" value="2" />第二事業部
                     <input type="radio" name="section01" value="3" />営業
@@ -112,7 +124,7 @@
         </table>
         <table>
             <tr>
-                <td><input type="button" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td> 
+                <td><input type="button" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td>
                 <td><input type="reset" class="btn btn-secondary"Secondary value="リセット"></td>
             </tr>
         </table>
