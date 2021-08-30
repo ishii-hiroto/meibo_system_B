@@ -24,7 +24,7 @@
             $DB_PW = "toMeu4rH";
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
-            $ID = $_GET['id'];
+            $ID = $_GET['member_ID'];
 
             $query_str = "SELECT * FROM member WHERE member.member_ID =" . $ID;   // 実行するSQL文を作成して変数に保持
 
