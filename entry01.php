@@ -86,10 +86,12 @@
                          // if($key01==){
                          //    echo "";
                           if($key01==1){
-                            echo "<input type='radio' name='gender01' value='" . $key01 . "'checked='checked'/>" . $gender;
+                            echo "<input type='radio' id='gender_radio1' name='gender01' value='" . $key01 . "'checked='checked'/><label for = 'gender_radio1'>" . $gender . "</label>";
+                            // 男性を押しても押せるようにした
                           }
                           if($key01==2){
-                            echo "<input type='radio' name='gender01' value='" . $key01 . "'/>" . $gender;
+                            echo "<input type='radio' id='gender_radio2' name='gender01' value='" . $key01 . "'/><label for = 'gender_radio2'>" . $gender . "</label>";
+                            // echo "<input type='radio' name='gender01' value='" . $key01 . "'/>" . $gender;
                           }
                         }
                     ?>
@@ -103,6 +105,11 @@
                 <th>所属部署</th>
                 <td>
                     <?php
+                        $DB_DSN = "mysql:host=localhost; dbname=hishii; charset=utf8";
+                        $DB_USER = "webaccess";
+                        $DB_PW = "toMeu4rH";
+                        $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
+
                         $query_str2 = "SELECT ID, section_name FROM section1_master WHERE 1";
 
                         $sql2 = $pdo->prepare($query_str2);                  // PDOオブジェクトにSQLを渡す
@@ -110,27 +117,32 @@
                         $result2 = $sql2->fetchAll();                        // 実行結果を取得して$resultに代入する
 
                         foreach($result2 as $s){
-                            echo "<input type='radio' name='section1' value=" . $s['ID'] . ">" . $s['grade_name'];
+                            if($s['ID']==1){
+                                echo "<input type='radio' id='section_radio1' name='section01' value='" . $s['ID'] . "' checked='checked'><label for = 'section_radio1'>" . $s['section_name'] . "</label>";
+                            }else{
+                                echo "<input type='radio' id='section_radio" . $s['ID'] . "' name='section01' value='" . $s['ID'] . "'><label for = 'section_radio" . $s['ID'] . "'>" . $s['section_name'] . "</label>";
+                            }
                         }
+                        echo "</td></tr>";
 
-                     ?>
-                    <input type="radio" name="section01" value="1" checked="checked" />第一事業部
-                    <input type="radio" name="section01" value="2" />第二事業部
-                    <input type="radio" name="section01" value="3" />営業
-                    <input type="radio" name="section01" value="4" />総務
-                    <input type="radio" name="section01" value="5" />人事
-                </td>
-            </tr>
-            <tr>
-                <th>役職</th>
-                <td>
-                    <input type="radio" name="grade01" value="1" checked="checked" />事業部長
-                    <input type="radio" name="grade01" value="2" />部長
-                    <input type="radio" name="grade01" value="3" />チームリーダー
-                    <input type="radio" name="grade01" value="4" />リーダー
-                    <input type="radio" name="grade01" value="5" />メンバー
-                </td>
-            </tr>
+                        $query_str3 = "SELECT ID, grade_name FROM grade_master WHERE 1";
+
+                        $sql3 = $pdo->prepare($query_str3);                  // PDOオブジェクトにSQLを渡す
+                        $sql3->execute();                                   // SQLを実行する
+                        $result3 = $sql3->fetchAll();                        // 実行結果を取得して$resultに代入する
+
+                        echo "<tr><th>役職</th><td>";
+                        foreach($result3 as $g){
+                            if($g['ID']==1){
+                                echo "<input type='radio' id='grade_radio1' name='grade01' value='" . $g['ID'] . "' checked='checked'><label for = 'grade_radio1'>" . $g['grade_name'] . "</label>";
+                                // echo "<input type='radio' name='grade01' value='" . $g['ID'] . "' checked='checked'>" . $g['grade_name'];
+                            }else{
+                                echo "<input type='radio' id='grade_radio" . $g['ID'] . "' name='grade01' value='" . $g['ID'] . "'><label for = 'grade_radio" . $g['ID'] . "'>" . $g['grade_name'] . "</label>";
+                                // echo "<input type='radio' name='grade01' value='" . $g['ID'] . "'>" . $g['grade_name'];
+                            }
+                        }
+                        echo "</td></tr>";
+                    ?>
         </table>
         <table>
             <tr>
