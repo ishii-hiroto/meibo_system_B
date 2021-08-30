@@ -13,10 +13,10 @@
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PW);
 
             $ID = $_POST["delete"];     //detail.phpのvalue値をidに渡す
-            $query_str = "DELETE FROM member WHERE member.member_ID = $ID";   // 実行するSQL文を作成して変数に保持
+            $query_str = "DELETE FROM member WHERE member.member_ID =" . $ID;   // 実行するSQL文を作成して変数に保持
 
             $sql = $pdo->prepare($query_str);     // PDOオブジェクトにSQLを渡す
-            if ($sql->execute()) {// SQLを実行する 
+            if ($sql->execute()) {// SQLを実行する
                 header('Location:index.php');
             }
             $result = $sql->fetch();
