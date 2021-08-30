@@ -31,7 +31,7 @@
                 window.alert('都道府県は必須です');
                 return false;
             }else if(age01_flag==1 || age01_value < 1 || age01_value > 100){
-                window.alert('年齢は必須です');
+                window.alert('年齢は必須です/数値を入力してください/1-99の範囲で入力してください');
                 return false;
             }else if(window.confirm('登録を行います。よろしいですか？')){
                 // location.href="./entry02.php";//「OK」の場合はindex.phpに移動
