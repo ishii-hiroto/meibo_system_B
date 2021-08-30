@@ -49,7 +49,7 @@
         </table>
 
         <script type="text/javascript">
-            const del = document.getElementById('del');
+            //const del = document.getElementById('del');
             function check(){
                 if (window.confirm('削除を行います。よろしいですか？')) {
                     return true;
