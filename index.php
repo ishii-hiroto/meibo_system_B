@@ -10,10 +10,9 @@
     <body>
         <table>
             <tr>
-                <td>社員名簿システム</td>
-                <td>| <a href="./index.php">トップ画面</a>
-                    | <a href="./entry01.php">新規社員登録へ</a> |
-                </td>
+                <big>社員名簿システム
+                | <a href="./index.php">トップ画面</a>
+                | <a href="./entry01.php">新規社員登録へ</a> |
             </tr>
         </table>
         <hr>
@@ -66,7 +65,7 @@
             <tr>
                 <td>名前：</td>
                 <td>
-                    <input type="search" name="name" size="20" maxlength="30"  value="<?php echo $cond_name;?>"> <!--プレースホルダー削除-->
+                    <input type="search" name="name" size="20" maxlength="30" value="<?php echo $cond_name;?>"> <!--プレースホルダー削除-->
                 </td>
             </tr>
         </table>
@@ -113,8 +112,8 @@
         </table>
         <table>
             <tr>
-                <td><input type="submit" value="検索"></td>
-                <td><input type="reset" value="リセットする"></td>
+                <td><input type="submit" class="btn btn-secondary"Secondary value="検索"></td>
+                <td><input type="reset" class="btn btn-secondary"Secondaryvalue="リセットする"></td>
             </tr>
         </table>
         <hr>
