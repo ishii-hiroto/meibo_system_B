@@ -96,11 +96,11 @@
                          // if($key01==){
                          //    echo "";
                           if($key01==1){
-                            echo "<input type='radio' id='gender_radio1' name='gender01' value='" . $key01 . "'checked='checked'/><label for = 'gender_radio1'>" . $gender . "</label>";
+                            echo "<input type='radio' id='gender_radio1' name='gender01' value='" . $key01 . "'checked='checked'/><label for = 'gender_radio1'>" . $gender . "</label> ";
                             // 男性を押しても押せるようにした
                           }
                           if($key01==2){
-                            echo "<input type='radio' id='gender_radio2' name='gender01' value='" . $key01 . "'/><label for = 'gender_radio2'>" . $gender . "</label>";
+                            echo "<input type='radio' id='gender_radio2' name='gender01' value='" . $key01 . "'/><label for = 'gender_radio2'>" . $gender . "</label> ";
                             // echo "<input type='radio' name='gender01' value='" . $key01 . "'/>" . $gender;
                           }
                         }
@@ -128,9 +128,9 @@
 
                         foreach($result2 as $s){
                             if($s['ID']==1){
-                                echo "<input type='radio' id='section_radio1' name='section01' value='" . $s['ID'] . "' checked='checked'><label for = 'section_radio1'>" . $s['section_name'] . "</label>";
+                                echo "<input type='radio' id='section_radio1' name='section01' value='" . $s['ID'] . "' checked='checked'><label for = 'section_radio1'>" . $s['section_name'] . "</label> ";
                             }else{
-                                echo "<input type='radio' id='section_radio" . $s['ID'] . "' name='section01' value='" . $s['ID'] . "'><label for = 'section_radio" . $s['ID'] . "'>" . $s['section_name'] . "</label>";
+                                echo "<input type='radio' id='section_radio" . $s['ID'] . "' name='section01' value='" . $s['ID'] . "'><label for = 'section_radio" . $s['ID'] . "'>" . $s['section_name'] . "</label> ";
                             }
                         }
                         echo "</td></tr>";
@@ -144,17 +144,17 @@
                         echo "<tr><th style='text-align:center'>役職</th><td>";
                         foreach($result3 as $g){
                             if($g['ID']==1){
-                                echo "<input type='radio' id='grade_radio1' name='grade01' value='" . $g['ID'] . "' checked='checked'><label for = 'grade_radio1'>" . $g['grade_name'] . "</label>";
+                                echo "<input type='radio' id='grade_radio1' name='grade01' value='" . $g['ID'] . "' checked='checked'><label for = 'grade_radio1'>" . $g['grade_name'] . "</label> ";
                                 // echo "<input type='radio' name='grade01' value='" . $g['ID'] . "' checked='checked'>" . $g['grade_name'];
                             }else{
-                                echo "<input type='radio' id='grade_radio" . $g['ID'] . "' name='grade01' value='" . $g['ID'] . "'><label for = 'grade_radio" . $g['ID'] . "'>" . $g['grade_name'] . "</label>";
+                                echo "<input type='radio' id='grade_radio" . $g['ID'] . "' name='grade01' value='" . $g['ID'] . "'><label for = 'grade_radio" . $g['ID'] . "'>" . $g['grade_name'] . "</label> ";
                                 // echo "<input type='radio' name='grade01' value='" . $g['ID'] . "'>" . $g['grade_name'];
                             }
                         }
                         echo "</td></tr>";
                     ?>
         </table>
-        <table align="center"> 
+        <table align="center">
             <tr>
                 <td><input type="button" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td>
                 <td><input type="reset" class="btn btn-secondary"Secondary value="リセット"></td>
