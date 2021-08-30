@@ -17,7 +17,7 @@
             $query_str = "UPDATE member SET ";
             $set_str = "";
 
-            if (isset($_POST['name']) && !empty($_POST['name'])) {
+            if (isset($_POST['name']) && !empty($_POST['name'])) {//1個でもエラーが出たらエラーにするL23、26....
                 $set_str .= "name = '" . $_POST['name'] ."'";
             }
             if (isset($_POST['pref']) && !empty($_POST['pref'])) {
@@ -33,7 +33,7 @@
                 $set_str .= ", section_ID = '" . $_POST['section_ID'] . "'";
             }
             if (isset($_POST['grade_ID']) && !empty($_POST['grade_ID'])) {
-                $set_str .= ", grade_ID = '" . $_POST['grade_ID'] . "' WHERE member.member_ID= $id";
+                $set_str .= ", grade_ID = '" . $_POST['grade_ID'] . "' WHERE member.member_ID= $id";//文字列展開
             }
 
             $query_str .= $set_str;
