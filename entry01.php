@@ -3,7 +3,10 @@
     <head>
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <!-- ↓bootsstrapのStarter template -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <title>新規社員情報登録</title>
+        <link rel="stylesheet" href="deco.css">
         <script type="text/javascript">
         function check(){
             var name01_flag=0;
@@ -43,15 +46,15 @@
     <body>
         <table>
             <tr>
-                <td>社員名簿システム</td>
-                <td>| <a href="./index.php">トップ画面</a>
-                    | <a href="./entry01.php">新規社員登録</a> |
-                </td>
+                <big>社員名簿システム
+                | <a href="./index.php">トップ画面</a>
+                | <a href="./entry01.php">新規社員登録</a> |
+
             </tr>
         </table>
         <hr>
         <form method="POST" action="./entry02.php" name='mainform'><!--どこで受け取るか-->
-        <table>
+        <table class='table table-striped table-info'>
             <tr>
                 <th>名前</th>
                 <td>
@@ -116,10 +119,14 @@
                     <input type="radio" name="grade01" value="5" />メンバー
                 </td>
             </tr>
+        </table>
+        <table>
             <tr>
-                <td><input type="button" onclick="check();" value="登録"></td>
-                <td><input type="reset" value="リセット"></td>
+                <td><input type="button" onclick="check();"class="btn btn-secondary"Secondary value="登録"></td>
+                <td><input type="reset" class="btn btn-secondary"Secondary value="リセット"></td>
             </tr>
         </table>
+        <!-- ↓bootsstrapのStarter template -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     </body>
 </html>

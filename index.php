@@ -59,7 +59,6 @@
             $sql = $pdo->prepare($query_str);                  // PDOオブジェクトにSQLを渡す
             $sql->execute();                                   // SQLを実行する
             $result = $sql->fetchAll();                        // 実行結果を取得して$resultに代入する
-            echo "検索件数：" . count($result);
         ?>
         <form method="GET" action="./index.php" name='searchform'>
         <table>
@@ -87,29 +86,43 @@
                         ?>
                     </select>
                 </td>
-                <td>部署：</td>
-                <td>
-                    <select name="section">
-                        <option value="" selected>すべて</option>
-                        <option value="1">第一事業部</option>
-                        <option value="2">第二事業部</option>
-                        <option value="3">営業</option>
-                        <option value="4">総務</option>
-                        <option value="5">人事</option>
-                    </select>
-                </td>
-                <td>役職：</td>
-                <td>
-                    <select name="grade">
-                        <option value="" selected>すべて</option>
-                        <option value="1">事業部長</option>
-                        <option value="2">部長</option>
-                        <option value="3">チームリーダー</option>
-                        <option value="4">リーダー</option>
-                        <option value="5">メンバー</option>
-                    </select>
-                </td>
-            </tr>
+                <?php
+                    $query_str2 = "SELECT ID, section_name FROM section1_master WHERE 1";
+
+                    $sql2 = $pdo->prepare($query_str2);                  // PDOオブジェクトにSQLを渡す
+                    $sql2->execute();                                   // SQLを実行する
+                    $result2 = $sql2->fetchAll();                        // 実行結果を取得して$resultに代入する
+
+
+                    // var_dump($result2);
+
+                    echo "<td>部署：</td><td><select name='section'>
+                    <option value='' selected>すべて</option>";
+
+                        foreach($result2 as $s){
+                            if($cond_section == $s['ID']){
+                                echo "<option value=" . $s['ID'] . "selected>" . $s['section_name'] . "</option>";
+                            }else{
+                                echo "<option value=" . $s['ID'] . ">" . $s['section_name'] . "</option>";
+                            }
+                        }
+                    echo"</select></td>";
+
+                    $query_str3 = "SELECT * FROM grade_master WHERE 1";
+
+                    $sql3 = $pdo->prepare($query_str3);                  // PDOオブジェクトにSQLを渡す
+                    $sql3->execute();                                   // SQLを実行する
+                    $result3 = $sql3->fetchAll();                        // 実行結果を取得して$resultに代入する
+
+                    echo "<td>役職：</td><td><select name='grade'>
+                        <option value='' selected>すべて</option>";
+
+                        foreach($result3 as $g){
+                            echo "<option value=" . $g['ID'] . ">" . $g['grade_name'] . "</option>";
+                        }
+
+                    echo"</select></td></tr>";
+                ?>
         </table>
         <table>
             <tr>
@@ -127,6 +140,8 @@
                 <th>役職</th>
             </tr>
             <?php
+                echo "検索件数：" . count($result);
+
                 $CNT = count($result);
 
                 if($CNT == 0){
